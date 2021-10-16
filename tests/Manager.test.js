@@ -8,7 +8,7 @@ test("Can set office number" , () => {
 
 test("Can return role of employee" , () => {
     const testValue = "Manager";
-    const manager = new Manager("Leslie Knope" , 1, "test@gmail.com", 100);
+    const manager = new Manager("Leslie Knope" , 1, "test@gmail.com", 411);
     expect(manager.getRole()).toBe(testValue);
 });
 

@@ -1,20 +1,21 @@
 const Engineer = require("../lib/Engineer");
 
 test("Can set GitHub account" , () => {
-    const testValue = "GitHubUser";
-    const engineer = new Engineer("Ben Wyatt" , 2, "test@gmail.com", testValue);
-    expect(engineer.github).toBe(GitHub);
+    const testVar = "GitHubAcct";
+    const user = new Engineer("John Smith", 1, "test@gmail.com", testVar);
+    expect(user.github).toBe(testVar);
 });
 
 test("Can return role of employee" , () => {
-    const role = "Engineer";
-    const engineer = new Engineer("Ben Wyatt" , 2, "test@gmail.com", "GitHubUser");
-    expect(engineer.getRole()).toBe(role);
+    const testVar = "Engineer";
+    const user = new Engineer("John Smith", 1, "test@gmail.com", "GitHubAcct");
+    expect(user.getRole()).toBe(testVar);
 });
 
 test("Can return GitHub username" , () => {
-    const testValue = "GitHubUser";
-    const engineer = new Engineer("Ben Wyatt" , 2, "test@gmail.com", testValue);
-    expect(engineer.getGithub()).toBe(GitHub);
+    const testVar = "GitHubAcct";
+    const user = new Engineer("John Smith", 1, "test@gmail.com", testVar);
+    expect(user.getGithub()).toBe(testVar);
 });
 
+module.exports = Engineer;

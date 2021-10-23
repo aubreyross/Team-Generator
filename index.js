@@ -108,3 +108,26 @@ const employeeProf = () => {
 
         })
 };
+
+const writeFile = data => {
+    fs.writeFile('./dist/index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("success");
+    }
+})
+
+};
+managerProf()
+    .then(employeeProf)
+    .then(wageSlaves => {
+        return printHTML(wageSlaves);
+    })
+    .then(html => {
+        return writeFile(html);
+    })
+    .catch(err => {
+        console.log(err);
+    });

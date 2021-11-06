@@ -32,5 +32,6 @@
   * Class activities 15, 16, 23, 24, 26
 
   ## Preview
-![team](https://user-images.githubusercontent.com/87405979138535163-beee71f6-8839-43db-a548-b221c2f37749.jpg)
+
+![team](https://user-images.githubusercontent.com/87405979/140601228-9fedc907-e643-433b-b643-0db84ade9338.jpg)
 

@@ -1,6 +1,6 @@
 const printHTML = require('./dist/printHTML');
 
-//classes for employees that will be used in the js files of the lib folder.
+//classes that will be used in the js files of the lib folder.
 const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
@@ -11,13 +11,13 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-//empty array for employee profiles
-const wageSlaves = [];
+//empty array for staff profiles
+const wageSlave = [];
 
 
 // prompt user to add a new manager profile with the following credentials
-const managerProf = () => {
-    return inquirer.prompt([
+function managerProfile() {
+    inquirer.prompt([
         {
             type: "input",
             name: "fullName",
@@ -40,20 +40,22 @@ const managerProf = () => {
             name: "officeNumber",
             message: "Please enter manager office number"
         }
+
     ])
         //upon user input new manager will be created
         .then(response => {
             const { fullName, id, email, officeNumber } = response;
             const manager = new Manager(fullName, id, email, officeNumber);
-        // pushes manager profile to the array
-            wageSlaves.push(manager);
-            console.log(manager);
+            // pushes manager profile to the array
+            wageSlave.push(manager);
+            addWageSlave();
         });
 
 }
-// the function to prompt the user to add another team memeber, either an engineer or intern.
-const employeeProf = () => {
-    return inquirer.prompt([
+
+//prompts for engineer + intern profile 
+function employeeProfile() {
+    inquirer.prompt([
         {
             type: "list",
             name: "role",
@@ -92,42 +94,51 @@ const employeeProf = () => {
             message: "Please enter intern's school name",
             when: (response) => response.role === "Intern",
         },
+
     ])
         //based on the user's input for role, it will determine which of the latter 2 questions should be asked.
         .then(response => {
-            let { fullName, role, id, email, school, github, newEmployee } = response;
+            let { fullName, role, id, email, school, github } = response;
             let employee;
             //if user selected engineer it will prompt questions for this criteria
             if (role === "Engineer") {
-                employee = new Engineer(id, email, school, fullName);
-            //if user selected intern it will prompt  questions for this criteria
+                employee = new Engineer(id, email, github, fullName);
+                //if user selected intern it will prompt  questions for this criteria
             } else if (role === "Intern") {
-                employee = new Intern(id, email, github, fullName);
+                employee = new Intern(id, email, school, fullName);
             }
-            wageSlaves.push(employee);
+            wageSlave.push(employee);
+            addWageSlave();
+        })
+}
+//function to add more employees & create the team once all employees are added.
+function addWageSlave() {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'newSlave',
+            message: 'Would you like to add to your team?',
+            choices: ['Yes', 'No']
 
+        }])
+
+        .then(chosen => {
+            switch (chosen.newSlave) {
+                case 'Yes':
+                    employeeProfile();
+                    break;
+                case 'No':
+                    createTeam();
+                    break;
+            }
         })
 };
 
-const writeFile = data => {
-    fs.writeFile('./dist/index.html', data, err => {
-        if (err) {
-            console.log(err);
-            return;
-        } else {
-            console.log("success");
-    }
-})
-
+//write to html 
+function createTeam() {
+    fs.writeFileSync('./dist/team.html', printHTML(wageSlave));
 };
-managerProf()
-    .then(employeeProf)
-    .then(wageSlaves => {
-        return printHTML(wageSlaves);
-    })
-    .then(html => {
-        return writeFile(html);
-    })
-    .catch(err => {
-        console.log(err);
-    });
+
+
+managerProfile();
+

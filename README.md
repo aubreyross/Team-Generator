@@ -17,7 +17,7 @@
   ## Links 
   * Code: https://github.com/aubreyross/Team-Generator
   * Published: https://aubreyross.github.io/Team-Generator/
-  * Video: https://www.youtube.com/watch?v=62ihrZHUnOI
+  * Video: https://watch.screencastify.com/v/deeNPsWjPGXPEiGWb5wJ
 
    ## Resources
   * https://www.npmjs.com/package/jest
@@ -26,7 +26,11 @@
   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor
   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
   * https://www.npmjs.com/package//inquirer#methods
+  * https://www.w3schools.com/bootstrap4/bootstrap_containers.asp
+  * https://www.w3schools.com/bootstrap4/bootstrap_cards.asp
+  * https://www.w3schools.com/css/css3_shadows.asp
+  * Class activities 15, 16, 23, 24, 26
 
   ## Preview
-
+![team](https://user-images.githubusercontent.com/87405979138535163-beee71f6-8839-43db-a548-b221c2f37749.jpg)
 
